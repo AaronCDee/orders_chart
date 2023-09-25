@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orders Chart | <%= yield(:heading) %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <header class="flex flex-row space-between items-center bg-dark text-white p-just-right">
+      <a href="/" class="decoration-none"><div><strong>Order Charts</strong></div></a>
+      <nav>
+        <%= link_to "Orders by Customer", root_path %>
+        <%= link_to "Orders by Month",    orders_by_month_path %>
+        <%= link_to "Orders by Country",  orders_by_country_path %>
+      </nav>
+    </header>
+    <div class="p-just-right">
+      <h1 class="text-center"><%= yield(:heading) %></h1>
+      <%= yield %>
+    </div>
+  </body>
+</html>

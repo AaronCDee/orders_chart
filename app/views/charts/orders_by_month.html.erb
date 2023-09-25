@@ -1,0 +1,17 @@
+<% provide(:heading, "Orders by Month") %>
+<%= form_with url: orders_by_month_path, method: :get, data: { turbo_frame: "chart-frame" }, class: ["flex", "flex-row"] do |f| %>
+    <div>
+        <%= f.label :start_date, "Start Date" %>
+        <%= f.date_field :start_date %>
+    </div>
+    <div style="margin-left: 5px;">-</div>
+    <div style="margin-left: 5px;">
+        <%= f.label :end_date, "End Date" %>
+        <%= f.date_field :end_date %>
+    </div>
+    <%= f.submit "Filter", style: "margin-left: 5px" %>
+<% end %>
+
+<%= turbo_frame_tag "chart-frame" do %>
+    <%= line_chart @order_count, xtitle: "Month", ytitle: "No. of Orders" %>
+<% end %>
